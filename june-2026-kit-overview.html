@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playworld Content Kit — June 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: #ffffff;
+      color: #383838;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* ── Top bar ── */
+    .top-bar {
+      background: #FF6600;
+      padding: 0 48px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .top-bar-logo {
+      font-size: 20px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+    .top-bar-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: #212121;
+      padding: 52px 48px 44px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -60px;
+      bottom: -60px;
+      width: 320px;
+      height: 320px;
+      background: #FF6600;
+      opacity: 0.07;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      color: #FF6600;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: 56px;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.0;
+      margin-bottom: 10px;
+    }
+    .hero-subtitle {
+      font-size: 19px;
+      font-weight: 400;
+      color: #E1E1E1;
+      margin-bottom: 14px;
+    }
+    .hero-desc {
+      font-size: 14px;
+      color: #999999;
+      max-width: 600px;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .hero-theme {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .hero-theme-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    .hero-theme-value {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #FF6600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 5px 14px;
+      background: rgba(255,102,0,0.12);
+      border: 1px solid rgba(255,102,0,0.3);
+      border-radius: 2px 6px;
+    }
+
+    /* ── Main ── */
+    .main {
+      padding: 44px 48px 40px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #FF6600;
+      margin-bottom: 20px;
+    }
+
+    /* ── Content Grid ── */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    a.content-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: #F2F2F2;
+      border-left: 4px solid #FF6600;
+      border-radius: 2px 8px 8px 2px;
+      padding: 18px 20px 16px;
+      transition: box-shadow 0.2s, background 0.2s;
+      -webkit-tap-highlight-color: rgba(255,102,0,0.08);
+    }
+    a.content-card:hover,
+    a.content-card:active {
+      background: #EAEAEA;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    }
+    a.content-card.full-width {
+      grid-column: 1 / -1;
+      border-left-color: #212121;
+    }
+
+    .card-num {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #FF6600;
+      margin-bottom: 4px;
+    }
+    a.content-card.full-width .card-num { color: #212121; }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #212121;
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: #555555;
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .card-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 3px 9px;
+      border-radius: 2px 4px;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+    .tag-included { background: #212121; }
+    .tag-conditional { background: #888888; }
+
+    .card-open {
+      font-size: 11px;
+      font-weight: 700;
+      color: #FF6600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    /* Always show on mobile (no hover); fade in on desktop hover */
+    @media (hover: hover) {
+      .card-open { opacity: 0; transition: opacity 0.2s; }
+      a.content-card:hover .card-open { opacity: 1; }
+    }
+
+    /* ── How To Use ── */
+    .how-to {
+      background: #212121;
+      border-radius: 2px 8px 8px 2px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+    .how-to h3 {
+      font-size: 18px;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 22px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+    .step-num {
+      font-size: 36px;
+      font-weight: 900;
+      color: #FF6600;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .step-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .step-body {
+      font-size: 13px;
+      color: #999999;
+      line-height: 1.55;
+    }
+
+    /* ── CTA Bar ── */
+    .cta-bar {
+      background: #F2F2F2;
+      border-radius: 2px 8px 8px 2px;
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 32px;
+      border-left: 4px solid #FF6600;
+    }
+    .cta-copy h4 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #212121;
+      margin-bottom: 4px;
+    }
+    .cta-copy p {
+      font-size: 13px;
+      color: #555555;
+      line-height: 1.5;
+    }
+    .cta-button {
+      display: inline-block;
+      position: relative;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 28px 13px;
+      color: #ffffff;
+      text-decoration: none;
+      white-space: nowrap;
+      z-index: 0;
+      flex-shrink: 0;
+    }
+    .cta-button::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background: #212121;
+      border-radius: 4px 8px;
+      transform: skewX(-15deg);
+      z-index: -1;
+      transition: background 0.3s;
+    }
+    .cta-button:hover::after,
+    .cta-button:active::after { background: #FF6600; }
+    .cta-button span { position: relative; z-index: 1; }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 2px solid #E1E1E1;
+      padding: 16px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .footer-brand {
+      font-size: 12px;
+      font-weight: 900;
+      color: #212121;
+    }
+    .footer-note {
+      font-size: 11px;
+      color: #999999;
+      text-align: center;
+      flex: 1;
+      min-width: 160px;
+    }
+    .footer-contact {
+      font-size: 11px;
+      color: #FF6600;
+      font-weight: 700;
+    }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE — Tablet (≤ 768px)
+    ════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .top-bar {
+        padding: 0 20px;
+        height: 48px;
+      }
+      .top-bar-label { display: none; }
+
+      .hero {
+        padding: 36px 24px 32px;
+      }
+      .hero-title { font-size: 40px; }
+      .hero-subtitle { font-size: 17px; }
+
+      .main { padding: 32px 20px 28px; }
+
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .step-num { font-size: 28px; }
+
+      .footer {
+        padding: 16px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .footer-note { text-align: left; }
+    }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE — Mobile (≤ 520px)
+    ════════════════════════════════════════ */
+    @media (max-width: 520px) {
+      .top-bar { padding: 0 16px; height: 46px; }
+      .top-bar-logo { font-size: 17px; }
+
+      .hero {
+        padding: 28px 16px 28px;
+      }
+      .hero::after { display: none; }
+      .hero-eyebrow { font-size: 10px; letter-spacing: 2px; }
+      .hero-title { font-size: 34px; }
+      .hero-subtitle { font-size: 15px; margin-bottom: 10px; }
+      .hero-desc { font-size: 13px; margin-bottom: 16px; }
+      .hero-theme { gap: 8px; }
+      .hero-theme-label { display: none; }
+
+      .main { padding: 24px 16px 24px; }
+      .section-label { font-size: 9px; }
+
+      /* Single column cards on mobile */
+      .content-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      a.content-card.full-width {
+        grid-column: 1;
+      }
+      a.content-card {
+        padding: 16px 16px 14px;
+        border-radius: 2px 10px 10px 2px;
+      }
+      .card-title { font-size: 15px; }
+      .card-desc { font-size: 12px; margin-bottom: 10px; }
+      /* Always show the open folder arrow on mobile */
+      .card-open { opacity: 1; font-size: 10px; }
+
+      .how-to {
+        padding: 22px 18px;
+        border-radius: 2px 10px 10px 2px;
+      }
+      .how-to h3 { font-size: 16px; margin-bottom: 18px; }
+      .steps { gap: 18px; }
+      .step-num { font-size: 26px; margin-bottom: 4px; }
+      .step-title { font-size: 13px; }
+      .step-body { font-size: 12px; }
+
+      .cta-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px 16px;
+        gap: 14px;
+      }
+      .cta-copy h4 { font-size: 14px; }
+      .cta-copy p { font-size: 12px; }
+      .cta-button {
+        width: 100%;
+        text-align: center;
+        font-size: 13px;
+        padding: 13px 20px 14px;
+      }
+
+      .footer {
+        padding: 14px 16px;
+        gap: 4px;
+      }
+      .footer-brand { font-size: 11px; }
+      .footer-note { font-size: 10px; }
+      .footer-contact { font-size: 10px; }
+    }
+
+    /* Print */
+    @media print {
+      .top-bar { position: static; }
+      body { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="top-bar-logo">PLAYWORLD®</div>
+    <div class="top-bar-label">Rep Agency Content Kit · June 2026</div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Monthly Content Kit</div>
+    <div class="hero-title">June 2026</div>
+    <div class="hero-subtitle">Your ready-to-use marketing materials are here.</div>
+    <div class="hero-desc">
+      Everything in this kit has been curated and approved by the Playworld marketing team.
+      Tap any section below to open it directly in Google Drive.
+      New materials arrive the first Monday of every month.
+    </div>
+    <div class="hero-theme">
+      <span class="hero-theme-label">This Month's Theme</span>
+      <span class="hero-theme-value">Multigenerational Play</span>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <div class="section-label">Tap any section to open it in Google Drive</div>
+
+    <div class="content-grid">
+
+      <a class="content-card" href="https://drive.google.com/drive/folders/1BxjpIkc5ayFbFCplCP0tM3imkI6Nw3Zb" target="_blank">
+        <div class="card-num">01</div>
+        <div class="card-title">Ready-to-Post Social Bundles</div>
+        <div class="card-desc">5 bundles for LinkedIn, Facebook, and Instagram — each with a caption and a Playworld-approved paired image. Open the Post folder, copy the caption, use the image, and post.</div>
+        <div class="card-footer">
+          <span class="card-tag tag-included">5 posts · images included</span>
+          <span class="card-open">Open →</span>
+        </div>
+      </a>
+
+      <a class="content-card" href="https://drive.google.com/drive/folders/17SMmXBG_H9GJL2zAjN3GSp7GTZHYi-8d" target="_blank">
+        <div class="card-num">02</div>
+        <div class="card-title">Thought Leadership Articles</div>
+        <div class="card-desc">Two Playworld originals on multigenerational and inclusive play, each with ready-to-use share copy for your channels.</div>
+        <div class="card-footer">
+          <span class="card-tag tag-included">2 articles included</span>
+          <span class="card-open">Open →</span>
+        </div>
+      </a>
+
+      <a class="content-card" href="https://drive.google.com/drive/folders/1jKUcdvPHT9GV_5R3NIeSFiPLwDbrbq47" target="_blank">
+        <div class="card-num">03</div>
+        <div class="card-title">Project Image Library</div>
+        <div class="card-desc">Curated installed playground photos and community builds from Playworld's asset library. Free to use on your website, social, and presentations.</div>
+        <div class="card-footer">
+          <span class="card-tag tag-included">Included this month</span>
+          <span class="card-open">Open →</span>
+        </div>
+      </a>
+
+      <a class="content-card" href="https://drive.google.com/drive/folders/1K-flG6BeWYZVQgz8ZXda-rIsLZ_UN_jV" target="_blank">
+        <div class="card-num">04</div>
+        <div class="card-title">PR Story</div>
+        <div class="card-desc">Ontario's Park of Hope — built with Rachel's Kids and rep agency partner New World Park Solutions. 200–300 daily visitors. Certified accessible and inclusive. Full summary and share copy inside.</div>
+        <div class="card-footer">
+          <span class="card-tag tag-included">Included this month</span>
+          <span class="card-open">Open →</span>
+        </div>
+      </a>
+
+      <a class="content-card" href="https://drive.google.com/drive/folders/13-pBcgEQuoMOCK5K2r3kdGKnvXJFuvaj" target="_blank">
+        <div class="card-num">05</div>
+        <div class="card-title">AI Lifestyle Imagery</div>
+        <div class="card-desc">Approved lifestyle images from Playworld's AI agency partner. Free to use across your digital channels.</div>
+        <div class="card-footer">
+          <span class="card-tag tag-conditional">When available</span>
+          <span class="card-open">Open →</span>
+        </div>
+      </a>
+
+      <a class="content-card" href="https://drive.google.com/drive/folders/1lFoJD2cFJMsN_q10B0UqvgwlB0ZuKenr" target="_blank">
+        <div class="card-num">06</div>
+        <div class="card-title">CEU Awareness</div>
+        <div class="card-desc">5 PlayPower Academy courses this month — urban playground planning, inclusive schoolyard design, surfacing, and more. Share with your landscape architect and parks contacts.</div>
+        <div class="card-footer">
+          <span class="card-tag tag-included">5 courses included</span>
+          <span class="card-open">Open →</span>
+        </div>
+      </a>
+
+      <a class="content-card full-width" href="https://drive.google.com/drive/folders/1jjZyOV-aQ9PMEiCjQH-JvLiOWRuUNYif" target="_blank">
+        <div class="card-num">07</div>
+        <div class="card-title">Promotion Kit</div>
+        <div class="card-desc">Brochures, sell sheets, and decks supporting current Playworld product promotions. Use these directly in your sales conversations with clients.</div>
+        <div class="card-footer">
+          <span class="card-tag tag-conditional">When active promotions are running</span>
+          <span class="card-open">Open →</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="how-to">
+      <h3>How to use this kit</h3>
+      <div class="steps">
+        <div>
+          <div class="step-num">01</div>
+          <div class="step-title">Tap to open</div>
+          <div class="step-body">Each card links directly to its Google Drive folder. Tap to browse, preview, and download.</div>
+        </div>
+        <div>
+          <div class="step-num">02</div>
+          <div class="step-title">Copy and post</div>
+          <div class="step-body">Each social bundle includes a caption doc and a paired, approved image. Copy the caption, use the image, post.</div>
+        </div>
+        <div>
+          <div class="step-num">03</div>
+          <div class="step-title">Tag us</div>
+          <div class="step-body">Use <strong style="color:#FF6600">#Playworld</strong> when you post so we can amplify your content across our channels.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-bar">
+      <div class="cta-copy">
+        <h4>Have a project story or great photos to share?</h4>
+        <p>Submit your project wins, installed playground photos, and local news — we'll feature them in a future kit.</p>
+      </div>
+      <a href="https://forms.gle/PLACEHOLDER" class="cta-button"><span>Submit Your Content →</span></a>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">PLAYWORLD® Marketing Team</div>
+    <div class="footer-note">Approved for use by Playworld rep agencies only. Not for external redistribution.</div>
+    <div class="footer-contact">Questions? Contact your Playworld marketing rep.</div>
+  </div>
+
+</body>
+</html>
